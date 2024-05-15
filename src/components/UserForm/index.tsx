@@ -14,6 +14,7 @@ const UserForm: FC<UserFormProps> = ({ onUserAdd }) => {
     onUserAdd({ name, email });
     setName("");
     setEmail("");
+    console.log("handleSubmit");
   };
 
   return (

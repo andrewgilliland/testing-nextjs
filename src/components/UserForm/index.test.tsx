@@ -5,7 +5,7 @@ import "@testing-library/jest-dom";
 
 test("UserForm should render a form with name and email input and a submit button", () => {
   //* render the component
-  render(<UserForm />);
+  render(<UserForm onUserAdd={() => {}} />);
 
   //* Manipulate the component or find an element in it
   const inputs = screen.getAllByRole("textbox");
@@ -19,9 +19,15 @@ test("UserForm should render a form with name and email input and a submit butto
 
 test("UserForm should call onUserAdd when the form is submitted", () => {
   //! NOT THE BEST IMPLEMENTATION
-  //* Try to render the component
+  const argList: any = [];
+  const callback = (...args: any) => {
+    console.log("args:", args);
+    argList.push(args);
+  };
 
-  render(<UserForm />);
+  //* Try to render the component
+  render(<UserForm onUserAdd={callback} />);
+
   //* Find the two inputs
   const [nameInput, emailInput] = screen.getAllByRole("textbox");
 
@@ -38,4 +44,11 @@ test("UserForm should call onUserAdd when the form is submitted", () => {
 
   //* Simulate clicking the submit button
   user.click(button);
+
+  //* Assertion to make sure 'onUserAdd' was called with name and email
+  expect(argList).toHaveLength(1);
+  expect(argList[0][0]).toEqual({
+    name: "Billy Joel",
+    email: "uptowngirl@bj.com",
+  });
 });
