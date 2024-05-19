@@ -1,5 +1,4 @@
-import { render, screen } from "@testing-library/react";
-import user from "@testing-library/user-event";
+import { render, screen, fireEvent } from "@testing-library/react";
 import UserForm from "./index";
 import "@testing-library/jest-dom";
 
@@ -35,18 +34,18 @@ test("UserForm should call onUserAdd when the form is submitted", () => {
   const [nameInput, emailInput] = screen.getAllByRole("textbox");
 
   //* Simulate typing in a name
-  user.click(nameInput);
-  user.keyboard("Billy Joel");
+  fireEvent.click(nameInput);
+  fireEvent.change(nameInput, { target: { value: "Billy Joel" } });
 
   //* Simulate typing in an email
-  user.click(emailInput);
-  user.keyboard("uptowngirl@bj.com");
+  fireEvent.click(emailInput);
+  fireEvent.change(emailInput, { target: { value: "uptowngirl@bj.com" } });
 
   //* Find the submit button
   const button = screen.getByRole("button");
 
   //* Simulate clicking the submit button
-  user.click(button);
+  fireEvent.click(button);
 
   //* Assertion to make sure 'onUserAdd' was called with name and email
   // expect(argList).toHaveLength(1);
