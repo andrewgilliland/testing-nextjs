@@ -6,8 +6,10 @@ import UserList from "@/components/UserList";
 import { useState } from "react";
 
 export type User = {
+  id: string;
   name: string;
   email: string;
+  isAdmin?: boolean;
 };
 
 export default function Home() {

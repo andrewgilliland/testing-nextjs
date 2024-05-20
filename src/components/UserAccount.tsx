@@ -1,4 +1,4 @@
-type User = { id: string; name: string; isAdmin?: boolean };
+import { User } from "@/app/page";
 
 const UserAccount = ({ user }: { user: User }) => {
   return (

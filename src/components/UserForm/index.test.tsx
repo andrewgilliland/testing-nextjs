@@ -57,5 +57,6 @@ test("UserForm should call onUserAdd when the form is submitted", () => {
   expect(mock).toHaveBeenCalledWith({
     name: "Billy Joel",
     email: "uptowngirl@bj.com",
+    id: "1",
   });
 });

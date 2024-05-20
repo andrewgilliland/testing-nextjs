@@ -11,7 +11,7 @@ const UserForm: FC<UserFormProps> = ({ onUserAdd }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onUserAdd({ name, email });
+    onUserAdd({ name, email, id: "1" });
     setName("");
     setEmail("");
   };
