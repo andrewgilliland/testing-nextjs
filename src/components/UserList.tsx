@@ -6,7 +6,9 @@ const UserList = ({ users }: { users: User[] }) => {
   return (
     <ul>
       {users.map((user) => (
-        <li key={user.id}>{user.name}</li>
+        <li key={user.id}>
+          <a href={`/users/${user.id}`}>{user.name}</a>
+        </li>
       ))}
     </ul>
   );
