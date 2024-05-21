@@ -1,6 +1,7 @@
 "use client";
 
 import Counter from "@/components/Counter";
+import TermsAndConditions from "@/components/TermsAndConditions";
 import UserForm from "@/components/UserForm";
 import UserList from "@/components/UserList";
 import { useState } from "react";
@@ -24,6 +25,7 @@ export default function Home() {
       {/* <UserForm onUserAdd={onUserAdd} />
       <UserList users={users} /> */}
       <Counter initialCount={0} />
+      <TermsAndConditions />
     </main>
   );
 }
