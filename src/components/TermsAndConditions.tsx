@@ -25,7 +25,7 @@ const TermsAndConditions = () => {
         </label>
       </div>
       <button
-        className="bg-purple-500 hover:bg-purple-700 disabled:bg-slate-400 font-semibold text-black rounded-md px-4 py-1.5 transition-colors duration-300 ease-in-out"
+        className="bg-purple-500 hover:bg-purple-700 disabled:bg-gray-600 font-semibold text-black rounded-md px-4 py-1.5 transition-colors duration-300 ease-in-out"
         disabled={!isChecked}
       >
         Submit
