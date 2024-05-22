@@ -1,9 +1,9 @@
 "use client";
 
 import Counter from "@/components/Counter";
+import ExpandableText from "@/components/ExpandableText";
 import TermsAndConditions from "@/components/TermsAndConditions";
-import UserForm from "@/components/UserForm";
-import UserList from "@/components/UserList";
+
 import { useState } from "react";
 
 export type User = {
@@ -26,6 +26,10 @@ export default function Home() {
       <UserList users={users} /> */}
       <Counter initialCount={0} />
       <TermsAndConditions />
+      <ExpandableText
+        text="
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae, facilis. Iste incidunt omnis odio asperiores aspernatur aliquid. Excepturi nobis voluptatum minima repudiandae officia inventore facilis earum possimus iusto laudantium natus odit commodi, libero itaque impedit sunt! Aspernatur harum labore eum deleniti architecto. Doloribus nam nostrum eos quis beatae, enim eveniet cum velit blanditiis officiis odio incidunt ipsa sed perspiciatis quibusdam. Odio laboriosam unde perferendis possimus quibusdam et, neque tempore ipsa deserunt rem similique. Nihil ullam vel illo? Exercitationem voluptas amet, distinctio veniam suscipit provident est laudantium perspiciatis, vel sed unde aspernatur molestiae quo dignissimos sit excepturi sint veritatis similique minima."
+      />
     </main>
   );
 }
