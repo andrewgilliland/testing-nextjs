@@ -4,7 +4,11 @@ import ExpandableText from "@/components/ExpandableText";
 import userEvent from "@testing-library/user-event";
 
 describe("ExpandableText", () => {
-  it("should render the full text if less than or equal to 255 characters", () => {
+  const limit = 255;
+  const longText = "_".repeat(limit + 1);
+  const truncatedText = `${longText.substring(0, limit)}...`;
+
+  it(`should render the full text if less than or equal to ${limit} characters`, () => {
     // Arrange
     render(<ExpandableText text="Hello, World!" />);
 
@@ -15,33 +19,42 @@ describe("ExpandableText", () => {
     expect(article).toBeInTheDocument();
   });
 
-  it("should render the truncated text with a Show More button if more than 255 characters", () => {
+  it(`should render the truncated text with a Show More button if more than ${limit} characters`, () => {
     // Arrange
-    render(
-      <ExpandableText text="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid eaque non vero facilis voluptatem, autem unde quia. Itaque esse eius quisquam veritatis quam, aspernatur, accusantium, porro cupiditate eligendi atque hic dolores eveniet placeat omnis molestiae. Totam similique quasi tempore quidem nobis in eaque eveniet sapiente, quod unde neque reprehenderit repellat a voluptatum hic quisquam. Soluta deserunt voluptatem voluptate magni dolore excepturi consectetur maiores, vel, suscipit cumque temporibus tempore reprehenderit veniam possimus quos sed nemo asperiores. Vero aliquam id totam deleniti repellendus itaque maiores voluptates accusantium, repudiandae magni. Nihil repellendus nemo soluta debitis corporis quas, quam consequuntur quia dolorem temporibus itaque." />
-    );
 
-    // Act
-    const article = screen.getByRole("article");
-    const button = screen.getByRole("button");
+    render(<ExpandableText text={longText} />);
 
-    // Assert
-    expect(article).toBeInTheDocument();
-    expect(button).toBeInTheDocument();
+    // Act and Assert
+    expect(screen.getByText(truncatedText)).toBeInTheDocument();
+    expect(screen.getByRole("button")).toBeInTheDocument();
   });
 
-  it("should render the full text when Show More button is clicked", () => {
+  it("should render the long text when Show More button is clicked", async () => {
     // Arrange
-    render(
-      <ExpandableText text="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid eaque non vero facilis voluptatem, autem unde quia. Itaque esse eius quisquam veritatis quam, aspernatur, accusantium, porro cupiditate eligendi atque hic dolores eveniet placeat omnis molestiae. Totam similique quasi tempore quidem nobis in eaque eveniet sapiente, quod unde neque reprehenderit repellat a voluptatum hic quisquam. Soluta deserunt voluptatem voluptate magni dolore excepturi consectetur maiores, vel, suscipit cumque temporibus tempore reprehenderit veniam possimus quos sed nemo asperiores. Vero aliquam id totam deleniti repellendus itaque maiores voluptates accusantium, repudiandae magni. Nihil repellendus nemo soluta debitis corporis quas, quam consequuntur quia dolorem temporibus itaque." />
-    );
+    render(<ExpandableText text={longText} />);
 
     // Act
-    const button = screen.getByRole("button");
+    const showMoreButton = screen.getByRole("button", { name: /more/i });
     const user = userEvent.setup();
-    user.click(button);
+    await user.click(showMoreButton);
 
     // Assert
-    expect(screen.getByText(/show less/i)).toBeInTheDocument();
+    expect(screen.getByText(longText)).toBeInTheDocument();
+    expect(screen.getByText(/less/i)).toBeInTheDocument();
+  });
+
+  it("should render the truncated text when Show Less button is clicked", async () => {
+    // Arrange
+    render(<ExpandableText text={longText} />);
+
+    // Act
+    const showMoreButton = screen.getByRole("button", { name: /more/i });
+    const user = userEvent.setup();
+    await user.click(showMoreButton);
+    const showLessButton = screen.getByRole("button", { name: /less/i });
+    await user.click(showLessButton);
+
+    // Assert
+    expect(screen.getByText(truncatedText)).toBeInTheDocument();
   });
 });
