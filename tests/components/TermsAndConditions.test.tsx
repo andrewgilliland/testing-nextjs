@@ -31,7 +31,6 @@ describe("TermsAndConditions", () => {
     const { checkbox, button } = renderComponent();
 
     // Act
-
     const user = userEvent.setup();
     await user.click(checkbox);
 

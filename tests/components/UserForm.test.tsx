@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import UserForm from "./index";
+import UserForm from "../../src/components/UserForm";
 import "@testing-library/jest-dom";
 
 test("UserForm should render a form with name and email input and a submit button", () => {

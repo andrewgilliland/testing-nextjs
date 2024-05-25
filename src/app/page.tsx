@@ -3,6 +3,7 @@
 import Counter from "@/components/Counter";
 import ExpandableText from "@/components/ExpandableText";
 import TermsAndConditions from "@/components/TermsAndConditions";
+import Link from "next/link";
 
 import { useState } from "react";
 
@@ -24,12 +25,20 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       {/* <UserForm onUserAdd={onUserAdd} />
       <UserList users={users} /> */}
+      <h1 data-testid="cypress-heading">Next Testing</h1>
       <Counter initialCount={0} />
       <TermsAndConditions />
       <ExpandableText
         text="
       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae, facilis. Iste incidunt omnis odio asperiores aspernatur aliquid. Excepturi nobis voluptatum minima repudiandae officia inventore facilis earum possimus iusto laudantium natus odit commodi, libero itaque impedit sunt! Aspernatur harum labore eum deleniti architecto. Doloribus nam nostrum eos quis beatae, enim eveniet cum velit blanditiis officiis odio incidunt ipsa sed perspiciatis quibusdam. Odio laboriosam unde perferendis possimus quibusdam et, neque tempore ipsa deserunt rem similique. Nihil ullam vel illo? Exercitationem voluptas amet, distinctio veniam suscipit provident est laudantium perspiciatis, vel sed unde aspernatur molestiae quo dignissimos sit excepturi sint veritatis similique minima."
       />
+      <Link
+        data-testid="cypress-about-link"
+        className="bg-white text-black px-4 py-2"
+        href="/about"
+      >
+        About
+      </Link>
     </main>
   );
 }

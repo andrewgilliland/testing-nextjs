@@ -21,9 +21,13 @@ const Counter = ({ initialCount }: { initialCount: number }) => {
 
   return (
     <div>
-      <div data-testid="count">Count: {count}</div>
+      <div data-testid="cypress-count">Count: {count}</div>
       <div>
-        <button className="border p-1" onClick={increment}>
+        <button
+          data-testid="cypress-increment"
+          className="border p-1"
+          onClick={increment}
+        >
           Increment
         </button>
         <button className="border p-1" onClick={decrement}>
